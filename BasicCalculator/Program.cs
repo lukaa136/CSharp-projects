@@ -5,64 +5,18 @@ class Program
 {
   static void Main(string[] args)
   {
-    double number1;
-    double number2;
-    int menuOption;
+    Console.WriteLine("Welcome to the calculator!");
     DisplayMenu();
 
-    string? input = AskInput("your menu option");
+    string? input = GetCorrectMenuOption(AskInput("your menu option"));
 
-    //Verify a correct menu option
-    if (!VerifyIntInput(input) || !VerifyMenuOptions(Convert.ToInt32(input)))
+    do
     {
-      do
-      {
-        input = AskInput("a valid option");
-      } while (!VerifyIntInput(input) || !VerifyMenuOptions(Convert.ToInt32(input)));
-    }
-
-    //Do the operation
-
-    switch (Convert.ToInt32(input))
-    {
-      //Add
-      case 1:
-        number1 = GetDoubleInput();
-        number2 = GetDoubleInput();
-        Console.WriteLine($"{number1} + {number2} = {number1 + number2}");
-        break;
-      //Subtract
-      case 2:
-        number1 = GetDoubleInput();
-        number2 = GetDoubleInput();
-        Console.WriteLine($"{number1} - {number2} = {number1 - number2}");
-        break;
-      //Multiply
-      case 3:
-        number1 = GetDoubleInput();
-        number2 = GetDoubleInput();
-        Console.WriteLine($"{number1} * {number2} = {number1 * number2}");
-        break;
-      //Divide
-      case 4:
-        number1 = GetDoubleInput();
-        number2 = GetDoubleInput();
-        Console.WriteLine($"{number1} / {number2} = {number1 / number2}");
-        break;
-      //Sqrt
-      case 5:
-        number1 = GetDoubleInput();
-        Console.WriteLine($"Square root of {number1} = {Math.Sqrt(number1)}");
-        break;
-      //Power
-      case 6:
-        number1 = GetDoubleInput();
-        number2 = GetDoubleInput();
-        Console.WriteLine($"{number1} to the power of {number2} = {Math.Pow(number1, number2)}");
-        break;
-    }
+      DoOperation(input);
+    } while (input != "exit");
 
   }
+
 
   static void DisplayMenu()
   {
@@ -75,6 +29,20 @@ class Program
     Console.WriteLine("6- Power");
   }
 
+
+  static string GetCorrectMenuOption(string input)
+  {
+    if (!VerifyIntInput(input) || !VerifyMenuOptions(Convert.ToInt32(input)))
+    {
+      do
+      {
+        input = AskInput("a valid option");
+      } while (!VerifyIntInput(input) || !VerifyMenuOptions(Convert.ToInt32(input)));
+    }
+    return input;
+  }
+
+
   static bool VerifyMenuOptions(int input)
   {
     if (input >= 1 && input <= 6)
@@ -82,9 +50,11 @@ class Program
     else
       return false;
   }
-  static double GetDoubleInput()
+
+
+  static double GetDoubleInput(string whatYouAsk = "your number")
   {
-    string? input = AskInput("your number");
+    string? input = AskInput(whatYouAsk);
 
     if (!VerifyDoubleInput(input))
     {
@@ -98,6 +68,7 @@ class Program
     return double.Parse(input);
   }
 
+
   static bool VerifyDoubleInput(string input)
   {
     bool isCorrect = false;
@@ -110,22 +81,6 @@ class Program
   }
 
 
-  static int GetIntInput()
-  {
-    string? input = AskInput("your menu option");
-
-    if (!VerifyIntInput(input))
-    {
-      do
-      {
-        input = AskInput("a correct option");
-
-      } while (!VerifyIntInput(input));
-    }
-
-    return int.Parse(input);
-  }
-
   static bool VerifyIntInput(string input)
   {
     bool isCorrect = false;
@@ -137,9 +92,56 @@ class Program
       return false;
   }
 
+
   static string AskInput(string typeOfInput)
   {
     Console.WriteLine($"Please enter {typeOfInput}.");
     return Console.ReadLine();
+  }
+
+
+  static void DoOperation(string input)
+  {
+    double number1;
+    double number2;
+
+    switch (Convert.ToInt32(input))
+    {
+      //Add
+      case 1:
+        number1 = GetDoubleInput("your first number");
+        number2 = GetDoubleInput("your second number");
+        Console.WriteLine($"{number1} + {number2} = {number1 + number2}");
+        break;
+      //Subtract
+      case 2:
+        number1 = GetDoubleInput("your first number");
+        number2 = GetDoubleInput("your second number");
+        Console.WriteLine($"{number1} - {number2} = {number1 - number2}");
+        break;
+      //Multiply
+      case 3:
+        number1 = GetDoubleInput("your first number");
+        number2 = GetDoubleInput("your second number");
+        Console.WriteLine($"{number1} * {number2} = {number1 * number2}");
+        break;
+      //Divide
+      case 4:
+        number1 = GetDoubleInput("your dividend");
+        number2 = GetDoubleInput("your divider");
+        Console.WriteLine($"{number1} / {number2} = {number1 / number2}");
+        break;
+      //Sqrt
+      case 5:
+        number1 = GetDoubleInput();
+        Console.WriteLine($"Square root of {number1} = {Math.Sqrt(number1)}");
+        break;
+      //Power
+      case 6:
+        number1 = GetDoubleInput();
+        number2 = GetDoubleInput("the power");
+        Console.WriteLine($"{number1} to the power of {number2} = {Math.Pow(number1, number2)}");
+        break;
+    }
   }
 }
