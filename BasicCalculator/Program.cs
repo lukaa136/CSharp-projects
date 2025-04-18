@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 class Program
 {
   static void Main(string[] args)
   {
-    decimal number1;
-    decimal number2;
+    double number1;
+    double number2;
     int menuOption;
     DisplayMenu();
 
@@ -24,23 +25,40 @@ class Program
 
     switch (Convert.ToInt32(input))
     {
+      //Add
       case 1:
-        number1 = GetDecimalInput();
-        number2 = GetDecimalInput();
+        number1 = GetDoubleInput();
+        number2 = GetDoubleInput();
         Console.WriteLine($"{number1} + {number2} = {number1 + number2}");
         break;
+      //Subtract
       case 2:
-        number1 = GetDecimalInput();
-        number2 = GetDecimalInput();
+        number1 = GetDoubleInput();
+        number2 = GetDoubleInput();
         Console.WriteLine($"{number1} - {number2} = {number1 - number2}");
         break;
+      //Multiply
       case 3:
+        number1 = GetDoubleInput();
+        number2 = GetDoubleInput();
+        Console.WriteLine($"{number1} * {number2} = {number1 * number2}");
         break;
+      //Divide
       case 4:
+        number1 = GetDoubleInput();
+        number2 = GetDoubleInput();
+        Console.WriteLine($"{number1} / {number2} = {number1 / number2}");
         break;
+      //Sqrt
       case 5:
+        number1 = GetDoubleInput();
+        Console.WriteLine($"Square root of {number1} = {Math.Sqrt(number1)}");
         break;
+      //Power
       case 6:
+        number1 = GetDoubleInput();
+        number2 = GetDoubleInput();
+        Console.WriteLine($"{number1} to the power of {number2} = {Math.Pow(number1, number2)}");
         break;
     }
 
@@ -64,26 +82,26 @@ class Program
     else
       return false;
   }
-  static decimal GetDecimalInput()
+  static double GetDoubleInput()
   {
     string? input = AskInput("your number");
 
-    if (!VerifyDecimalInput(input))
+    if (!VerifyDoubleInput(input))
     {
       do
       {
         input = AskInput("a correct number");
 
-      } while (!VerifyDecimalInput(input));
+      } while (!VerifyDoubleInput(input));
     }
 
-    return decimal.Parse(input);
+    return double.Parse(input);
   }
 
-  static bool VerifyDecimalInput(string input)
+  static bool VerifyDoubleInput(string input)
   {
     bool isCorrect = false;
-    isCorrect = decimal.TryParse(input, out decimal result);
+    isCorrect = double.TryParse(input, out double result);
 
     if (isCorrect)
       return true;
