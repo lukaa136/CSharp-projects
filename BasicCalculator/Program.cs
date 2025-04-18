@@ -5,15 +5,19 @@ class Program
 {
   static void Main(string[] args)
   {
+    bool exit = false;
     Console.WriteLine("Welcome to the calculator!");
-    DisplayMenu();
 
-    string? input = GetCorrectMenuOption(AskInput("your menu option"));
 
     do
     {
-      DoOperation(input);
-    } while (input != "exit");
+      DisplayMenu();
+
+      string? input = GetCorrectMenuOption(AskInput("your menu option"));
+
+      DoOperation(input, out exit);
+      
+    } while (exit == false);
 
   }
 
@@ -27,6 +31,7 @@ class Program
     Console.WriteLine("4- Division");
     Console.WriteLine("5- Square root");
     Console.WriteLine("6- Power");
+    Console.WriteLine("7- Exit");
   }
 
 
@@ -45,7 +50,7 @@ class Program
 
   static bool VerifyMenuOptions(int input)
   {
-    if (input >= 1 && input <= 6)
+    if (input >= 1 && input <= 7)
       return true;
     else
       return false;
@@ -100,10 +105,11 @@ class Program
   }
 
 
-  static void DoOperation(string input)
+  static void DoOperation(string input, out bool exit)
   {
     double number1;
     double number2;
+    exit = false;
 
     switch (Convert.ToInt32(input))
     {
@@ -141,6 +147,9 @@ class Program
         number1 = GetDoubleInput();
         number2 = GetDoubleInput("the power");
         Console.WriteLine($"{number1} to the power of {number2} = {Math.Pow(number1, number2)}");
+        break;
+      case 7:
+        exit = true;
         break;
     }
   }
