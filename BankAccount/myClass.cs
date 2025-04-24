@@ -18,7 +18,7 @@ class User
             }
             catch (FormatException ex)
             {
-                throw ex;
+                throw;
             }
 
         }
@@ -36,7 +36,7 @@ class User
     {
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.Password = password;
     }
 
     //methods
@@ -51,70 +51,99 @@ class User
     {
         return this.password == password;
     }
-}
 
-
-//auxiliar class
-public static class Validate
-{
-    public static class PasswordValidator
+    public void UpdatePassword(string currentPassword, string newPassword)
     {
-        //specific validators
-        public static bool Length(string password)
+        bool succeed = false;
+
+        do
         {
-            if (password.Length >= 8)
+            Console.WriteLine("Please enter the current password");
+
+            if (CheckPassword(currentPassword))
+            {
+                try
+                {
+                    this.Password = newPassword;
+                    succeed = true;
+                    Console.WriteLine("Password updated successfully.");
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine("Error updating password: " + ex.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Incorrect current password, try again.");
+            }
+
+        } while (!succeed);
+
+    }
+
+
+    //auxiliar class
+    public static class Validate
+    {
+        public static class PasswordValidator
+        {
+            //specific validators
+            public static bool Length(string password)
+            {
+                if (password.Length >= 8)
+                    return true;
+                throw new FormatException("Your password must be at least 8 character long");
+            }
+
+            public static bool HasLower(string password)
+            {
+                foreach (char c in password)
+                {
+                    if (char.IsLower(c))
+                        return true;
+                }
+                throw new FormatException("Your password must have a lowercase");
+            }
+
+            public static bool HasUpper(string password)
+            {
+                foreach (char c in password)
+                {
+                    if (char.IsUpper(c))
+                        return true;
+                }
+                throw new FormatException("Your password must have an uppercase");
+            }
+
+            public static bool HasNumb(string password)
+            {
+                foreach (char c in password)
+                {
+                    if (char.IsDigit(c))
+                        return true;
+                }
+                throw new FormatException("Your password must have a number");
+            }
+
+            //validate all
+
+            public static bool ValidateAll(string password)
+            {
+                try
+                {
+                    HasNumb(password);
+                    HasLower(password);
+                    HasUpper(password);
+                    Length(password);
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine("An error ocurred the process of validate the password");
+                    throw;
+                }
                 return true;
-            throw new FormatException("Your password must be at least 8 character long");
-        }
-
-        public static bool HasLower(string password)
-        {
-            foreach (char c in password)
-            {
-                if (char.IsLower(c))
-                    return true;
             }
-            throw new FormatException("Your password must have a lowercase");
-        }
-
-        public static bool HasUpper(string password)
-        {
-            foreach (char c in password)
-            {
-                if (char.IsUpper(c))
-                    return true;
-            }
-            throw new FormatException("Your password must have an uppercase");
-        }
-
-        public static bool HasNumb(string password)
-        {
-            foreach (char c in password)
-            {
-                if (char.IsDigit(c))
-                    return true;
-            }
-            throw new FormatException("Your password must have a number");
-        }
-
-        //validate all
-
-        public static bool ValidateAll(string password)
-        {
-            try
-            {
-                HasNumb(password);
-                HasLower(password);
-                HasUpper(password);
-                Length(password);
-            }
-            catch (FormatException ex)
-            {
-                Console.WriteLine("An error ocurred the process of validate the password");
-                Console.WriteLine(ex.Message);
-                throw;
-            }
-            return true;
         }
     }
 }
