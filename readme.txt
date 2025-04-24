@@ -1,2 +1,7 @@
-I am learning C# and I will use this repos to upload the projects that i do to reaffirm my knowledge.
-This is a trail of everything I learned, so it has different levels and skills at different times.
+About This Repository
+
+I'm currently learning C# and using this repository to upload projects that help me reinforce my knowledge.
+
+This serves as a learning journey, so you'll find code at different skill levels—each project reflects my progress at that point in time.g I learned, so it has different levels and skills at different times.
+
+Note: These projects are part of my on-going C# learning journey, but they’re not the only ones I’ve worked on, it's something that i do to show regularity. As I progress, I’ll keep adding more complex examples and refining my skills.
