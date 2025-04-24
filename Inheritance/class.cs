@@ -21,6 +21,11 @@ public class Person
         Console.WriteLine($"Name: {Name}");
         Console.WriteLine($"Age: {Age}");
     }
+
+    public bool IsAdult()
+    {
+        return Age > 18;
+    }
 }
 
 public class Student : Person
@@ -31,7 +36,7 @@ public class Student : Person
 
     //Constructors
     public Student(string name, int age, char grade) : base(name, age)
-    { 
+    {
         Grade = grade;
     }
 
@@ -57,4 +62,10 @@ public class Teacher : Person
     }
 
     //Methods
+    public override void Introduce()
+    {
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Age: {Age}");
+        Console.WriteLine($"Subject {Subject}");
+    }
 }
