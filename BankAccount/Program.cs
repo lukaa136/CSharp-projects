@@ -11,8 +11,9 @@ class Program
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
+            //manage the exception. I practice all that i want.
         }
+        //finished project
 
 
     }
