@@ -43,3 +43,18 @@ public class Student : Person
         Console.WriteLine($"Grade {Grade}");
     }
 }
+
+public class Teacher : Person
+{
+    //Properties & fields
+    public string Subject
+    { get; private set; }
+
+    //Constructors
+    public Teacher(string name, int age, string subject) : base(name, age)
+    {
+        Subject = subject;
+    }
+
+    //Methods
+}
