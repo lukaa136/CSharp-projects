@@ -27,17 +27,49 @@ class Dog : Animal, IAdoptable
     public bool IsAdopted
     { get; private set; }
 
-    public string Type
+    public string RandomDogProperty
     { get; private set; }
 
-    public Dog(string name, int age, string type) : base(name, age)
+    public Dog(string name, int age, string randomDogProperty) : base(name, age)
     {
-        Type = type;
+        RandomDogProperty = randomDogProperty;
     }
 
     public override void MakeSound()
     {
         Console.WriteLine("Dog bark");
+    }
+    public void Adopt()
+    {
+        if (!IsAdopted)
+        {
+            IsAdopted = true;
+            Console.WriteLine($"{Name} has been adopted!");
+        }
+        else
+        {
+            Console.WriteLine($"{Name} is already adopted!");
+        }
+    }
+}
+
+class Cat : Animal, IAdoptable
+{
+    public bool IsAdopted
+    { get; private set; }
+
+    public string RandomCatProperty
+    { get; private set; }
+
+
+    public Cat(string name, int age, string randomCatProperty) : base(name, age)
+    {
+        RandomCatProperty = randomCatProperty;
+    }
+
+    public override void MakeSound()
+    {
+        Console.WriteLine("Cat meows");
     }
     public void Adopt()
     {
