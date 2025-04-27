@@ -1,0 +1,5 @@
+C:\Users\lk\repos\CSharp-projects\PolymorphAndInterface\obj\Debug\net9.0\PolymorphAndInterface.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lk\repos\CSharp-projects\PolymorphAndInterface\obj\Debug\net9.0\PolymorphAndInterface.AssemblyInfoInputs.cache
+C:\Users\lk\repos\CSharp-projects\PolymorphAndInterface\obj\Debug\net9.0\PolymorphAndInterface.AssemblyInfo.cs
+C:\Users\lk\repos\CSharp-projects\PolymorphAndInterface\obj\Debug\net9.0\PolymorphAndInterface.csproj.CoreCompileInputs.cache
+C:\Users\lk\repos\CSharp-projects\PolymorphAndInterface\obj\Debug\net9.0\PolymorphAndInterface.sourcelink.json
