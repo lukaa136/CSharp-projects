@@ -1,3 +1,8 @@
+**UPDATE** 
+I'm currently full focused on CS50X, that's why I stopped uploading things here, but I'll be back with a strong foundation and ready to work.
+**UPDATE**
+
+
 About This Repository
 
 I'm currently learning C# and using this repository to upload projects that help me reinforce my knowledge.
